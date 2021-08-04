@@ -41,45 +41,84 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredient) {
+    console.log(mainIngredient);
+    console.log(otherIngredient);
+  },
 };
 
-// info: The Spread Operator
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// info: The Rest Operator
+// SPREAD, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
 
-const goodNewArr = [1, 2, ...arr];
-console.log(goodNewArr);
-console.log(...goodNewArr);
+// REST, because on LEFT side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
-
-// Copy Array
-const mainMenuCopy = [...restaurant.mainMenu];
-console.log(mainMenuCopy);
-
-// join 2 arrays or more
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
-
-//Example
-const ingredients = [
-  // prompt('Let us make pasta! Ingredient 1?'),
-  // prompt('Ingredient 2?'),
-  // prompt('Ingredient 3?'),
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
 ];
-console.log(ingredients);
-restaurant.orderPasta(...ingredients);
+console.log(pizza, risotto, otherFood);
 
 // Objects
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
-console.log(newRestaurant);
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Sederhana';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+// Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 3, 5, 7, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
+
+// info: The Spread Operator
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
+
+// const goodNewArr = [1, 2, ...arr];
+// console.log(goodNewArr);
+// console.log(...goodNewArr);
+//
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
+
+// Copy Array
+// const mainMenuCopy = [...restaurant.mainMenu];
+// console.log(mainMenuCopy);
+
+// join 2 arrays or more
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+//Example
+// const ingredients = [
+// prompt('Let us make pasta! Ingredient 1?'),
+// prompt('Ingredient 2?'),
+// prompt('Ingredient 3?'),
+// ];
+// console.log(ingredients);
+// restaurant.orderPasta(...ingredients);
+
+// Objects
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+// console.log(newRestaurant);
+//
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Sederhana';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
 
 // info: Destructuring Objects
 // restaurant.orderDelivery({
